@@ -5,7 +5,7 @@ const { Errores } = require("../middleware/errores");
 
 exports.autenticarUsuario = async (req, res) => {
   // Revisar si hay errores
-  Errores(req,res);
+  Errores(req,res); 
   // extraer datos del req
   const { email, password } = req.body;
 
@@ -37,7 +37,8 @@ exports.autenticarUsuario = async (req, res) => {
       },
       (error, token) => {
         if (error) throw error;
-        // Mensaje de confirmación
+        // Mensaje de confirmación   application/json
+        // res.setHeader("Content-Type", "application/json");
         res.json({ token });
       }
     );
@@ -49,10 +50,11 @@ exports.autenticarUsuario = async (req, res) => {
 // Obtiene que usuario está autenticado
 exports.usuarioAutenticado = async (req,res)=>{
   try {
-    const usuario = await Usuario.findById(req.usuario.id);
+    const usuario = await Usuario.findById(req.usuario.id).select('-password');
     res.json({usuario});
   } catch (error) {
     console.log(error);
     res.status(500).json({msg: 'Hubo un error'});
   }
 }
+ 
