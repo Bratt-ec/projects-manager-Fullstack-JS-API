@@ -9,19 +9,8 @@ const port = process.env.PORT || 8000;
 conectarDB();
 // Habilitar CORS
 // https://projects-app.netlify.app/
-const whitelist = ['https://projects-app.netlify.app/'];
-const corsOptions = {
-    origin: (origin, callback) =>  {
-        // console.log(origin);
-        const existe = whitelist.some( dominio => dominio === origin);
-        if ( existe ) {
-            callback(null, true)
-        } else {
-            callback(new Error('No Permitido por CORS'))
-        }
-    }
-}
-app.use(cors(corsOptions));
+
+app.use(cors());
 // app.use(cors());
 // Habilitar Express.json
 app.use(express.json({ extended: true }));
