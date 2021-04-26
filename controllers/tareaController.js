@@ -34,7 +34,7 @@ exports.obtenerTareas = async (req, res) => {
   try {
     // extraemos el proyecto
     // Comprobamos si existe el proyecto
-    const { proyecto } = req.body;
+    const { proyecto } = req.query;
     const proyectoExiste = await Proyecto.findById(proyecto);
     if (!proyectoExiste) {
       return res.status(404).json({ msg: "Proyecto no encontrado" });
@@ -95,7 +95,7 @@ exports.actualizarTarea = async (req, res) => {
 exports.eliminarTarea = async (req, res) => {
   try {
     // Comprobamos si existe el proyecto
-    const { proyecto } = req.body;
+    const { proyecto } = req.query;
 
     // Revisamos si la tarea existe
     let tareaExiste = await Tarea.findById(req.params.id);
