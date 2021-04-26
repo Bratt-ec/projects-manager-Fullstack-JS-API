@@ -4,7 +4,7 @@ const cors = require('cors');
 // Crear el server
 const app = express(); 
 // Puerto del server
-const PORT = process.env.PORT || 4000;
+const port = process.env.port || 4000;
 // Conectarse a la BD
 conectarDB();
 // Habilitar CORS
@@ -17,8 +17,8 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/proyectos', require('./routes/proyectos'));
 app.use('/api/tareas', require('./routes/tareas'));
 // Ininiar el server
-app.listen(PORT, ()=>{
-    console.log(`Server init in port : ${PORT}`);
+app.listen(port,'0.0.0.0', ()=>{
+    console.log(`Server init in port : ${port}`);
 });
 
 
