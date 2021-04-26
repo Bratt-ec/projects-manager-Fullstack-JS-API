@@ -4,7 +4,7 @@ const cors = require('cors');
 // Crear el server
 const app = express(); 
 // Puerto del server
-const port = process.env.port || 8000;
+const port = process.env.PORT || 8000;
 // Conectarse a la BD
 conectarDB();
 // Habilitar CORS
